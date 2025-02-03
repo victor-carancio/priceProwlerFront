@@ -2,13 +2,14 @@ import { ThemeProvider } from "styled-components";
 import "./App.css";
 
 import AppRoutes from "./routes/AppRoutes";
-import GlobalStyles from "./styles/globalStyles";
+import GlobalStyles from "./shared/styles/styled-components/globalStyles";
 import { useAppSelector } from "./store/hooks/useAppSelector";
 
-import { darkTheme, lightTheme } from "./styles/theme";
-import Header from "./components/header/Header";
+import { darkTheme, lightTheme } from "./shared/styles/theme";
+import Header from "./shared/components/header/Header";
 import { useEffect } from "react";
-import Footer from "./components/Footer";
+import Footer from "./shared/components/footer/Footer";
+// import Footer from "./components/Footer";
 // import { useGetGameFromNameDBQuery } from "./store/apis/gameApi";
 
 function App() {

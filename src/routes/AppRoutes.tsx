@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../pages/Home";
-import NotFound from "../pages/NotFound";
-import Results from "../pages/Results";
-import GameDetail from "../pages/GameDetail";
-import TermOfUse from "../pages/TermOfUse";
-import AdvanceResults from "../pages/AdvanceResults";
+
+import Results from "../features/search/Results.page";
+
+import TermOfUse from "../features/term-of-use/TermOfUse.page";
+import Home from "../features/home/Home.page";
+import AdvanceResults from "../features/advance-search/AdvanceResults.page";
+import GameDetail from "../features/game-detail/GameDetail.page";
+import NotFound from "../features/not-found/NotFound.page";
 
 const AppRoutes = () => {
   return (

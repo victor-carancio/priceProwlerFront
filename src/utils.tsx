@@ -1,3 +1,5 @@
+import { Game, StoreTypes } from "./@types/global.d";
+
 export const capitalizeEachWord = (sentence: string) => {
   return sentence
     .toLowerCase() // Convertir todo a minúsculas
@@ -25,3 +27,21 @@ export const sortOptions = [
   { value: "alphabetical-asc", label: "Alfabético (A-Z)" },
   { value: "alphabetical-desc", label: "Alfabético (Z-A)" },
 ];
+
+export const getImgGame = (game: Game) => {
+  const correctStore = game.stores.find((store) => store.game_id === game.id);
+
+  if (!correctStore) {
+    return "img/defult.jpg";
+  }
+
+  const { store, info_game } = correctStore;
+
+  const storeImage: Record<StoreTypes, string> = {
+    [StoreTypes.STEAM_STORE]: "",
+    [StoreTypes.EPIC_STORE]: "?h=352&amp;quality=medium&amp;resize=1&amp;w=264", //"?h=352&amp;quality=medium&amp;resize=1&amp;w=264", "?resize=1&w=460&h=215&quality=medium"
+    [StoreTypes.XBOX_STORE]: "?q=100&h=352&w=265",
+  };
+
+  return `${info_game.imgStore}${storeImage[store as StoreTypes]}`;
+};
