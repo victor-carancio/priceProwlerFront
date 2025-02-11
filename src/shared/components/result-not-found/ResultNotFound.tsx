@@ -7,8 +7,9 @@ const ResultNotFound = () => {
   return (
     <NotFoundContainer>
       <h2>No se han encontrado resultados, intenta otra búsqueda</h2>
+
       <StyledIcon size="100px">
-        <FaFaceFrown />
+        <FaFaceFrown aria-label="face-frown-icon" />
       </StyledIcon>
     </NotFoundContainer>
   );

@@ -18,6 +18,7 @@ const StorePrice = ({ store, shouldRedirect, detail }: StorePriceProps) => {
   // console.log("--------------Price-----------------------");
   // console.log(store);
   // console.log("--------------------------------------");
+  const storePriceProps = { store: store.store, info_price: store.info_price };
   return (
     <StoreGame
       href={shouldRedirect ? store.url : undefined}
@@ -37,7 +38,7 @@ const StorePrice = ({ store, shouldRedirect, detail }: StorePriceProps) => {
         )}
       </StoreInfo>
 
-      <GamePrice store={store} detail={detail}></GamePrice>
+      <GamePrice store={storePriceProps} detail={detail}></GamePrice>
     </StoreGame>
   );
 };

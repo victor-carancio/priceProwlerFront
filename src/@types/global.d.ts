@@ -127,6 +127,7 @@ export interface StoreReduced {
   info_price: InfoPrice;
   info_game: InfoGameReduced;
 }
+
 export interface StoreComplete {
   id: number;
   storeIdGame: string;
@@ -144,12 +145,12 @@ export interface StoreComplete {
 
 export interface InfoPrice {
   id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   discount_percent: string;
   initial_price: string;
   final_price: string;
-  offer_end_date: Date | null;
+  offer_end_date: string | null;
   currency: string;
   store_game_id: number;
 }

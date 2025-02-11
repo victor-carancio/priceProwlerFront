@@ -3,13 +3,15 @@ import styled from "styled-components";
 import { device } from "../../styles/media";
 import { storeColors } from "../../styles/theme";
 
+export type StoreGamePrice = Pick<StoreReduced, "info_price" | "store">;
 interface PriceProps {
-  store: StoreReduced;
+  store: StoreGamePrice;
   detail?: boolean;
 }
 const GamePrice = ({ store, detail }: PriceProps) => {
   const { final_price, currency, discount_percent, initial_price } =
     store.info_price;
+  console.log(store);
 
   if (final_price === "0") {
     return (

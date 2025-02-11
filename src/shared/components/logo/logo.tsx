@@ -38,7 +38,7 @@ export const StyledIcon = styled(Provider)<IconBaseProps>`
 `;
 
 export const StyledStoreIcon = styled(Provider)<IconBaseProps>`
-  font-size: ${({ size }) => `${size ? size : "24"}px `};
+  font-size: ${({ size }) => `${size ? size : "24"}px`};
   cursor: pointer;
   color: ${({ theme }) => theme.logo};
   transition: color 300ms ease, transform 200ms ease;
@@ -49,7 +49,9 @@ export const StyledStoreIcon = styled(Provider)<IconBaseProps>`
 `;
 
 const StoreIcons: Record<StoreTypes, JSX.Element> = {
-  [StoreTypes.STEAM_STORE]: <FaSteam color="#f2ecff" />,
-  [StoreTypes.EPIC_STORE]: <SiEpicgames color="#f2ecff" />,
-  [StoreTypes.XBOX_STORE]: <FaXbox color="#f2ecff" />,
+  [StoreTypes.STEAM_STORE]: <FaSteam color="#f2ecff" aria-label="steam-icon" />,
+  [StoreTypes.EPIC_STORE]: (
+    <SiEpicgames color="#f2ecff" aria-label="epic-icon" />
+  ),
+  [StoreTypes.XBOX_STORE]: <FaXbox color="#f2ecff" aria-label="xbox-icon" />,
 };
