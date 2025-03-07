@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { describe, test, vi } from "vitest";
+import { describe, test } from "vitest";
 import TermOfUse from "./TermOfUse.page";
 import { MemoryRouter } from "react-router-dom";
 

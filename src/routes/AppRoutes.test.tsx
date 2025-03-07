@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, test, vi } from "vitest";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 import {
   useGetFeaturedGamesQuery,
@@ -20,6 +20,13 @@ vi.mock("../features/search/hooks/useGetGame.ts", () => ({
   useGetGame: vi.fn(),
 }));
 
+const mockDefault = {
+  data: null,
+  isLoading: false,
+  error: false,
+  refetch: vi.fn(),
+};
+
 describe("AppRoutes", () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -29,10 +36,9 @@ describe("AppRoutes", () => {
     const mockFeatureGames = [
       { feature: "Test feature games", games: [...mockGames] },
     ];
-    (useGetFeaturedGamesQuery as vi.Mock).mockReturnValue({
+    vi.mocked(useGetFeaturedGamesQuery).mockReturnValue({
+      ...mockDefault,
       data: mockFeatureGames,
-      error: false,
-      isLoading: false,
     });
     render(
       <HelmetProvider>
@@ -47,10 +53,9 @@ describe("AppRoutes", () => {
   test("renders GameDetail page when navigating to /game/:id", () => {
     const mockGameDetail = { ...detailMockGame };
 
-    (useGetGameDetailQuery as vi.Mock).mockReturnValue({
+    vi.mocked(useGetGameDetailQuery).mockReturnValue({
+      ...mockDefault,
       data: mockGameDetail,
-      error: false,
-      isLoading: false,
     });
 
     render(
@@ -74,10 +79,10 @@ describe("AppRoutes", () => {
 
   test("render result page when navigating to /results", () => {
     const data = { nbHts: 2, data: [...mockGames] };
-    (useGetGame as vi.Mock).mockReturnValue({
+    vi.mocked(useGetGame).mockReturnValue({
+      ...mockDefault,
       data: data,
-      error: false,
-      isLoading: false,
+      error: undefined,
     });
     render(
       <HelmetProvider>
@@ -97,10 +102,9 @@ describe("AppRoutes", () => {
       currentPage: 1,
       games: [...mockGames],
     };
-    (useGetGameWithFiltersQuery as vi.Mock).mockReturnValue({
+    vi.mocked(useGetGameWithFiltersQuery).mockReturnValue({
+      ...mockDefault,
       data: data,
-      error: false,
-      isLoading: false,
     });
     render(
       <HelmetProvider>
