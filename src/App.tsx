@@ -6,7 +6,7 @@ import GlobalStyles from "./shared/styles/styled-components/globalStyles";
 import { useAppSelector } from "./store/hooks/useAppSelector";
 
 import { darkTheme, lightTheme } from "./shared/styles/theme";
-import Header from "./shared/components/header/Header";
+import Header from "./shared/components/header/header/Header";
 import { useEffect } from "react";
 import Footer from "./shared/components/footer/Footer";
 // import Footer from "./components/Footer";

@@ -1,6 +1,7 @@
 import ImagesGallery, { ReactImageGalleryItem } from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import styled from "styled-components";
+
+import { StyledGalleryWrapper } from "./GameIamgesGallery.styles";
 // import { device } from "../../styles/media";
 
 //ejmplo
@@ -32,28 +33,6 @@ interface GameImagesGalleryProps {
 }
 const GameImagesGallery = ({ images }: GameImagesGalleryProps) => {
   const renderItem = (item: ReactImageGalleryItem) => {
-    // if (item.original.includes("youtube.com")) {
-    // return (
-    // <StyledIframe
-    //   className="image-gallery-image"
-    //   src={item.original}
-    //   height="100%"
-    //   title="YouTube video"
-    //   frameBorder="0"
-    //   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    //   allowFullScreen
-    // ></StyledIframe>
-    //   <StyledVideo
-    //     className="image-gallery-image"
-    //     src={item.original}
-    //     controls
-    //     height="100%"
-    //   >
-    //     Your browser does not support the video tag.
-    //   </StyledVideo>
-    // );
-    // }
-
     return <img className="image-gallery-image" src={item.original} />;
   };
 
@@ -69,40 +48,5 @@ const GameImagesGallery = ({ images }: GameImagesGalleryProps) => {
     </StyledGalleryWrapper>
   );
 };
-
-const StyledGalleryWrapper = styled.div`
-  .image-gallery-content .image-gallery-slide .image-gallery-image {
-    object-fit: contain;
-    max-width: 600px;
-    max-height: 309px;
-    overflow: hidden;
-    object-position: center center;
-  }
-  & .fullscreen .image-gallery-slide .image-gallery-image {
-    max-height: 90vh;
-    max-width: 1440px;
-    height: 100vh;
-  }
-  .image-gallery-content .image-gallery-thumbnail-image {
-    max-height: 51.83px;
-    object-fit: contain;
-  }
-`;
-
-// const StyledVideo = styled.video`
-//   min-height: 270px;
-
-//   @media ${device.laptop} {
-//     min-height: 300px;
-//   }
-// `;
-
-// const StyledIframe = styled.iframe`
-//   min-height: 270px;
-
-//   @media ${device.laptop} {
-//     min-height: 300px;
-//   }
-// `;
 
 export default GameImagesGallery;

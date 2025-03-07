@@ -1,22 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 
-import styled from "styled-components";
-import { Game } from "../../@types/global.d";
-
+import { GameType } from "../../@types/global.d";
 import CustomSelect from "../../shared/components/select/CustomSelect";
 import { useState } from "react";
 import { useGetGame } from "./hooks/useGetGame";
-// import CardGameContainer from "../components/cardGame/CardGameContainer";
-
 import Loading from "../../shared/components/loading/Loading";
 import { Helmet } from "react-helmet-async";
 import ResultNotFound from "../../shared/components/result-not-found/ResultNotFound";
 import SearchError from "../../shared/components/search-error/SearchError";
 import { sortOptions } from "../../utils";
-import GamesContainer from "../../shared/components/games-container/GamesContainer";
+import GamesContainer from "../../shared/components/games-container/games-container/GamesContainer";
 import { MainContainer } from "../../shared/styles/styled-components/main-container/mainContainer";
-
-// import { Game, StoreTypes } from "../@types/global.d.ts";
+import { ResultHeader } from "./Results.page.styles";
 
 const Results = () => {
   const [searchParams] = useSearchParams();
@@ -67,21 +62,12 @@ const Results = () => {
   );
 };
 
-const ResultHeader = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const sortGames = (data: Game[], sortKey: string) => {
+const sortGames = (data: GameType[], sortKey: string) => {
   const sortOption = sortKey.split("-");
-  // console.log(sortOption);
   const sort = sortOption[0];
   const order = sortOption[1] === "asc" ? 1 : -1;
 
-  let gamesSorted: Game[] = [];
+  let gamesSorted: GameType[] = [];
   if (sort === "alphabetical") {
     gamesSorted = [...data].sort((a, b) => {
       const gameA = a.gameName;

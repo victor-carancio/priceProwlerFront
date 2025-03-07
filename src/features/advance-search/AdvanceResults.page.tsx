@@ -1,38 +1,23 @@
 import { Helmet } from "react-helmet-async";
 import { useSearchParams } from "react-router-dom";
 
-import styled from "styled-components";
 import { useGetGameWithFiltersQuery } from "../../store/apis/gameApi";
 import Loading from "../../shared/components/loading/Loading";
 import SearchError from "../../shared/components/search-error/SearchError";
 import ResultNotFound from "../../shared/components/result-not-found/ResultNotFound";
 
 import Pagination from "../../features/advance-search/components/Pagination";
-import GamesContainer from "../../shared/components/games-container/GamesContainer";
+import GamesContainer from "../../shared/components/games-container/games-container/GamesContainer";
 import { MainContainer } from "../../shared/styles/styled-components/main-container/mainContainer";
-// import { useEffect } from "react";
-
-// import { useState } from "react";
+import { ResultHeader } from "./AdvanceResults.styles";
 
 const AdvanceResults = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  // const navigate = useNavigate();
-  // const [currentPage, setCurrentPage] = useState(1);
-
-  // const jio = Object.fromEntries(searchParams);
-  // console.log(jio);
-  // const jioo = new URLSearchParams(jio).toString();
-  // console.log(jioo);
-
-  // const url = [...searchParams]
-  //   .map((element) => `${element[0]}=${element[1]}`)
-  //   .join("&");
 
   const { data, isLoading, error, isFetching } = useGetGameWithFiltersQuery(
     Object.fromEntries(searchParams)
   );
 
-  // console.log(data);
   if (isLoading || isFetching) return <Loading />;
   if (error) return <SearchError />;
   if (data?.nbHts === 0 || !data?.games.length) return <ResultNotFound />;
@@ -60,6 +45,7 @@ const AdvanceResults = () => {
             page: (data.currentPage + 1).toString(),
           })
       );
+
       window.scrollTo(0, 0);
       // navigate(`${url}&page=${data.currentPage + 1}`);
     }
@@ -75,14 +61,6 @@ const AdvanceResults = () => {
     );
     window.scrollTo(0, 0);
   };
-
-  // setCurrentPage(data.currentPage);
-  // const numbers = [...Array(data.totalPages + 1).keys()].slice(1);
-
-  // console.log(data.currentPage);
-  // console.log(data.totalPages);
-  // console.log(numbers);
-  // console.log(data.games);
 
   return (
     <>
@@ -103,17 +81,8 @@ const AdvanceResults = () => {
                   data.totalGames
                 )} de ${data.totalGames}`}
               </h3>
-              {/* <CustomSelect
-              options={sortOptions}
-              value={selectedValue}
-              onChange={handleSelectedChange}
-              // placeholder="ordenar por"
-            /> */}
             </ResultHeader>
-            <GamesContainer
-              data={data.games}
-              // isSmallSize={true}
-            />
+            <GamesContainer data={data.games} />
             <Pagination
               currentPage={data.currentPage}
               totalPages={data.totalPages}
@@ -129,11 +98,3 @@ const AdvanceResults = () => {
 };
 
 export default AdvanceResults;
-
-const ResultHeader = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;

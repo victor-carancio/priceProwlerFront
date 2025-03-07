@@ -7,7 +7,7 @@ export const useGetGame = (game: string) => {
   const {
     data: nameDbData,
     error: nameDbError,
-    // isLoading: isLoadingNameDb,
+
     isFetching: isFetchingNameDb,
   } = useGetGameFromNameDBQuery(game);
 

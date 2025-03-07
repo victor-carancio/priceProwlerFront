@@ -2,7 +2,7 @@ import {
   CategoriesFilter,
   FeaturedGames,
   FiltersData,
-  GameData,
+  GameDataReduced,
   GameDetails,
   GenresFilter,
 } from "./../../@types/global.d";
@@ -17,7 +17,7 @@ export const gameApiSlice = createApi({
     baseUrl: "https://priceprowler.vcaranciodev.online/api/v1",
   }),
   endpoints: (builder) => ({
-    getGameFromNameDB: builder.query<GameData, string>({
+    getGameFromNameDB: builder.query<GameDataReduced, string>({
       query: (game) => `/game/search?title=${game}`,
     }),
     getGameWithFilters: builder.query<
@@ -36,7 +36,7 @@ export const gameApiSlice = createApi({
       query: (game) => `/game/filters?${game}&limit=20`,
     }),
 
-    getGameFromScraper: builder.query<GameData, string>({
+    getGameFromScraper: builder.query<GameDataReduced, string>({
       query: (game) => `/game?title=${game}`,
     }),
     getFeaturedGames: builder.query<FeaturedGames[], string>({

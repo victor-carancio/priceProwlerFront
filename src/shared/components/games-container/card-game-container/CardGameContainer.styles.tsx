@@ -1,49 +1,5 @@
-import { Game } from "../../../@types/global";
-
-import { device } from "../../styles/media";
 import styled from "styled-components";
-import StorePrice from "../store-price/StorePrice";
-import { useNavigate } from "react-router-dom";
-import { capitalizeEachWord, getImgGame } from "../../../utils";
-
-interface CardGameContainerProps {
-  game: Game;
-  isSmallSize?: boolean;
-}
-
-const CardGameContainer = ({ game, isSmallSize }: CardGameContainerProps) => {
-  const navigate = useNavigate();
-
-  const handleNavigateToDetail = (id: number) => {
-    navigate(`/game/${id}`);
-  };
-  return (
-    <CardGame
-      key={game.id}
-      $imageUrl={getImgGame(game)}
-      onClick={() => handleNavigateToDetail(game.id)}
-      $isSmallSize={isSmallSize}
-    >
-      <ImgContainer>
-        <ImgGame
-          src={getImgGame(game)}
-          alt={`${game.gameName}-img`}
-          // onClick={() => handleNavigateToDetail(game.id)}
-          $isSmallSize={isSmallSize}
-        />
-      </ImgContainer>
-
-      <InfoGame>
-        <TitleGame>{capitalizeEachWord(game.gameName)}</TitleGame>
-        <StoresContainer>
-          <StorePrice store={game.stores[0]} shouldRedirect={false} />
-        </StoresContainer>
-      </InfoGame>
-    </CardGame>
-  );
-};
-
-export default CardGameContainer;
+import { device } from "../../../styles/media";
 
 interface CardGameProps {
   $imageUrl: string;
@@ -60,7 +16,7 @@ const CardGame = styled.div<CardGameProps>`
   padding: 0px;
   flex-direction: column;
   /* height: ${({ $isSmallSize }) => ($isSmallSize ? "210px" : "270px")};
-  max-width: ${({ $isSmallSize }) => ($isSmallSize ? "330px" : "400px")}; */
+    max-width: ${({ $isSmallSize }) => ($isSmallSize ? "330px" : "400px")}; */
   height: 210px;
   max-width: 330px;
 
@@ -81,7 +37,7 @@ const CardGame = styled.div<CardGameProps>`
     height: ${({ $isSmallSize }) => ($isSmallSize ? "190px" : "250px")};
     max-width: ${({ $isSmallSize }) => ($isSmallSize ? "280px" : "385px")};
     /* height: 190px;
-    max-width: 280px; */
+      max-width: 280px; */
   }
   transition: filter 300ms ease, transform 300ms ease;
   &:hover {
@@ -113,7 +69,7 @@ const ImgGame = styled.img<ImgGameProps>`
     width: ${({ $isSmallSize }) => ($isSmallSize ? "280px" : "385px")};
     height: ${({ $isSmallSize }) => ($isSmallSize ? "120px" : "180px")};
     /* width: 280px;
-    height: 120px; */
+      height: 120px; */
     object-fit: cover;
   }
 `;
@@ -156,3 +112,12 @@ const StoresContainer = styled.div`
   gap: 10px;
   flex-direction: column;
 `;
+
+export {
+  CardGame,
+  ImgContainer,
+  ImgGame,
+  InfoGame,
+  StoresContainer,
+  TitleGame,
+};

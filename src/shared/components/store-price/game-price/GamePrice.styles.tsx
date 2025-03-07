@@ -1,59 +1,7 @@
-import { StoreReduced, StoreTypes } from "../../../@types/global";
 import styled from "styled-components";
-import { device } from "../../styles/media";
-import { storeColors } from "../../styles/theme";
-
-export type StoreGamePrice = Pick<StoreReduced, "info_price" | "store">;
-interface PriceProps {
-  store: StoreGamePrice;
-  detail?: boolean;
-}
-const GamePrice = ({ store, detail }: PriceProps) => {
-  const { final_price, currency, discount_percent, initial_price } =
-    store.info_price;
-  console.log(store);
-
-  if (final_price === "0") {
-    return (
-      <Prices>
-        <NormalPrice $storeName={store.store} $detail={detail}>
-          -
-        </NormalPrice>
-      </Prices>
-    );
-  }
-
-  if (discount_percent !== "0" && discount_percent !== "-") {
-    return (
-      <DiscountPrice>
-        <Discount $storeName={store.store} $detail={true}>
-          <p>{`${discount_percent}%`}</p>
-        </Discount>
-        <Prices>
-          <InitialPrice
-            $storeName={store.store}
-            $detail={detail}
-          >{`${initial_price} ${currency}`}</InitialPrice>
-          <NormalPrice $storeName={store.store} $detail={detail}>
-            {`${final_price} ${currency}`}
-          </NormalPrice>
-        </Prices>
-      </DiscountPrice>
-    );
-  }
-
-  return (
-    <Prices>
-      <NormalPrice $storeName={store.store} $detail={detail}>
-        {final_price !== "Gratis" && final_price !== "Próximamente"
-          ? `${final_price} ${currency}`
-          : final_price}
-      </NormalPrice>
-    </Prices>
-  );
-};
-
-export default GamePrice;
+import { StoreTypes } from "../../../../@types/global";
+import { storeColors } from "../../../styles/theme";
+import { device } from "../../../styles/media";
 
 interface StoreNameProps {
   $storeName: string;
@@ -141,3 +89,5 @@ const InitialPrice = styled.p<StoreNameProps>`
     font-size: ${({ $detail }) => ($detail ? "12px" : "12px")};
   }
 `;
+
+export { InitialPrice, Prices, NormalPrice, Discount, DiscountPrice };

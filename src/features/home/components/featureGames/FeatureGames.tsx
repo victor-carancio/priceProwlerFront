@@ -1,23 +1,21 @@
-import styled from "styled-components";
-
-import { Game } from "../../../../@types/global";
+import { GameType } from "../../../../@types/global";
 import { useRef, useState } from "react";
 import { ViewMore } from "../../../../shared/styles/styled-components/viewMore/ViewMoreButton";
-import { device } from "../../../../shared/styles/media";
-import GamesContainer from "../../../../shared/components/games-container/GamesContainer";
+import GamesContainer from "../../../../shared/components/games-container/games-container/GamesContainer";
+import {
+  FeatureContainer,
+  FeatureGamesType,
+  TitleFeature,
+} from "./FeatureGames.styles";
 
 interface FeatureGamesProps {
   feature: string;
-  games: Game[];
+  games: GameType[];
 }
 const FeatureGames = ({ feature, games }: FeatureGamesProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const contentRef = useRef<HTMLParagraphElement>(null);
-
-  //   const handleOpenFeature = () => {
-  //     setIsOpen(!isOpen);
-  //   };
 
   const toggleExpand = () => {
     if (contentRef.current) {
@@ -55,35 +53,3 @@ const FeatureGames = ({ feature, games }: FeatureGamesProps) => {
 };
 
 export default FeatureGames;
-interface FeatureContainerProps {
-  $isOpen?: boolean;
-  $maxHeight?: number;
-}
-
-const FeatureContainer = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const TitleFeature = styled.h2`
-  margin-bottom: 15px;
-
-  @media ${device.tablet} {
-    margin-bottom: 20px;
-  }
-`;
-
-const FeatureGamesType = styled.div<FeatureContainerProps>`
-  height: ${({ $isOpen, $maxHeight }) =>
-    $isOpen ? `${$maxHeight}px` : "685px"};
-
-  overflow: hidden;
-  transition: height 300ms ease;
-  @media ${device.tablet} {
-    height: ${({ $isOpen, $maxHeight }) =>
-      $isOpen ? `${$maxHeight}px` : "625px"};
-  }
-`;

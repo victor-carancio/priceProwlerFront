@@ -1,9 +1,10 @@
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
-// import { BiSkipNext } from "react-icons/bi";
-// import { BiSkipPrevious } from "react-icons/bi";
-
 import { StyledIcon } from "../../../shared/components/logo/logo";
-import styled from "styled-components";
+import {
+  CurrentPage,
+  PaginationContainer,
+  PaginationNumber,
+} from "./Pagination.styles";
 
 interface PaginationProps {
   currentPage: number;
@@ -19,8 +20,6 @@ const Pagination = ({
   prevPage,
   clickPage,
 }: PaginationProps) => {
-  // console.log(totalPages);
-
   const prevThreeNum = Array.from(
     { length: 3 },
     (_, index) => currentPage - 1 - index
@@ -38,7 +37,7 @@ const Pagination = ({
     <PaginationContainer>
       {currentPage > 1 && (
         <StyledIcon>
-          <GrFormPrevious onClick={prevPage} />
+          <GrFormPrevious onClick={prevPage} data-testid="prev-icon" />
         </StyledIcon>
       )}
 
@@ -54,7 +53,7 @@ const Pagination = ({
 
       {totalPages !== currentPage && (
         <StyledIcon>
-          <GrFormNext onClick={nextPage} />
+          <GrFormNext onClick={nextPage} data-testid="next-icon" />
         </StyledIcon>
       )}
     </PaginationContainer>
@@ -62,32 +61,3 @@ const Pagination = ({
 };
 
 export default Pagination;
-
-const PaginationContainer = styled.div`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-`;
-
-const PaginationNumber = styled.div`
-  cursor: pointer;
-  height: 25px;
-  font-size: 18px;
-  padding: 2px;
-  transition: color 300ms ease-in-out;
-  &:hover {
-    color: ${({ theme }) => theme.textHover};
-  }
-`;
-
-const CurrentPage = styled.div`
-  font-weight: 700;
-  font-size: 20px;
-  height: 25px;
-  padding: 2px;
-
-  border-bottom: 1px solid ${({ theme }) => theme.text};
-`;

@@ -11,6 +11,11 @@ export interface GameData {
   data: Game[];
 }
 
+export interface GameDataReduced {
+  nbHts: number;
+  data: GameType[];
+}
+
 interface BaseFilters {
   nbHts: number;
 }
@@ -32,11 +37,13 @@ export interface FiltersData {
 export interface Game {
   id: number;
   gameName: string;
-  platform: string;
-  createdAt: Date;
-  updatedAt: Date;
+  platform?: string;
+  createdAt: string;
+  updatedAt: string;
   stores: StoreReduced[];
 }
+
+export type GameType = Pick<Game, "gameName" | "id" | "stores">;
 
 export interface GameDetails {
   id: number;
@@ -117,15 +124,16 @@ export enum SteamImageSizes {
 export interface StoreReduced {
   id: number;
   store: string;
-  type: string;
+  // type: string;
   url: string;
-  edition: string;
+  // edition: string;
   gamepass: boolean | null;
-  createdAt: Date;
-  updatedAt: Date;
+  // createdAt: string;
+  // updatedAt: string;
   game_id: number;
   info_price: InfoPrice;
-  info_game: InfoGameReduced;
+  info_game: { imgStore: string };
+  // info_game: InfoGameReduced;
 }
 
 export interface StoreComplete {

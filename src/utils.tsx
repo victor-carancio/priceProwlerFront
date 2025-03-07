@@ -1,4 +1,4 @@
-import { Game, StoreTypes } from "./@types/global.d";
+import { GameType, StoreTypes } from "./@types/global.d";
 
 export const capitalizeEachWord = (sentence: string) => {
   return sentence
@@ -28,7 +28,11 @@ export const sortOptions = [
   { value: "alphabetical-desc", label: "Alfabético (Z-A)" },
 ];
 
-export const getImgGame = (game: Game) => {
+export const getImgGame = (game: GameType) => {
+  if (!game?.stores || !Array.isArray(game.stores)) {
+    return "img/defult.jpg";
+  }
+
   const correctStore = game.stores.find((store) => store.game_id === game.id);
 
   if (!correctStore) {

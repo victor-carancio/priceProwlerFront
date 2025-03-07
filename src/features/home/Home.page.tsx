@@ -12,7 +12,7 @@ const Home = () => {
     return <Loading />;
   }
   if (error) return <SearchError />;
-  // console.log(data);
+
   return (
     <>
       <Helmet>

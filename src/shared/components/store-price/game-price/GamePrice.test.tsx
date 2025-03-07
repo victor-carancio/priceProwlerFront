@@ -1,6 +1,7 @@
-import { logRoles, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, test } from "vitest";
 import GamePrice from "./GamePrice";
+// import GamePrice from "./GamePrice";
 
 const mockBasePrice = {
   info_price: {
@@ -37,8 +38,8 @@ describe("GamePrice component - Unit Tests", () => {
   });
 
   test("Should render initial price, final price and discount when percent is more than 0 or diferent than '-'", () => {
-    const { container } = render(<GamePrice store={mockBasePrice} />);
-    logRoles(container);
+    render(<GamePrice store={mockBasePrice} />);
+
     const { currency, discount_percent, final_price, initial_price } =
       mockBasePrice.info_price;
     const initialPrice = screen.getByText(`${initial_price} ${currency}`);

@@ -1,11 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import { describe, test, vi } from "vitest";
-// import { SiEpicgames } from "react-icons/si";
 import { FaUser } from "react-icons/fa";
 import { StyledIcon, StyledStoreIcon } from "./logo";
-// import { ThemeProvider } from "styled-components";
 import { StoreTypes } from "../../../@types/global.d";
-// import { lightTheme, darkTheme } from "../../styles/theme";
 
 vi.mock("react-icons/fa", () => ({
   FaSteam: () => <svg aria-label="steam-icon" />,

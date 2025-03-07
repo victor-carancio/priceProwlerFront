@@ -1,8 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, test, vi } from "vitest";
 import ResultNotFound from "./ResultNotFound";
-// import { StyledIcon } from "../logo/logo";
-// import { FaFaceFrown } from "react-icons/fa6";
 
 describe("Result not found component", () => {
   vi.mock("react-icons/fa6", () => ({
@@ -32,14 +30,3 @@ describe("Result not found component", () => {
     expect(iconElement).toHaveAttribute("height", "100px");
   });
 });
-
-// describe("Result not found component - Integration test", () => {
-//   test("Should render StyledIcon component with correct size", () => {
-//     const { container } = render(<ResultNotFound />);
-//     logRoles(container);
-//     const iconElement = screen.getByLabelText("face-frown-icon");
-//     expect(iconElement).toBeInTheDocument();
-//     expect(iconElement).toHaveAttribute("width", "100px");
-//     expect(iconElement).toHaveAttribute("height", "100px");
-//   });
-// });
